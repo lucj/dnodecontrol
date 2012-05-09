@@ -2,11 +2,11 @@ dnode = require('dnode');
 util = require('util');
 express = require('express');
 exec = require('child_process').exec;
-redis = require("redis");
+redis = require('redis');
+hash = require('hashish');
 
 // Hashes to keep track of clients (mac address and sockets)
 clients = {}; 
-sockets = {};
 
 // App configuration
 var app = express.createServer();

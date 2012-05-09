@@ -5,7 +5,8 @@
     "dnode": "0.9.x",
     "express": "2.5.4",
     "redis": "0.7.1",
-    "hiredis": "0.1.14"
+    "hiredis": "0.1.14",
+    "hashish": "0.0.x"
   },
   "engine": {
     "node": "0.6.x"

@@ -2,7 +2,15 @@ function route(app, md, h){
   
   // Get list of connected clients (socket id)
   app.get('/clients', function(req, res){
-      h.respond(res, clients);
+     db.smembers("clients", function(err, clients){
+        if(err){
+           console.log("error:" + err.message);
+           h.respond(res, { 'error' : err.message });
+        } else {
+           console.log("clients:" + clients);
+           h.respond(res, clients);
+        }
+     });
   });
 
   // Check if client is connected
