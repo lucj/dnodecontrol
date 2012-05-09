@@ -14,6 +14,7 @@ function conf() {
     });
     conn.on('end', function(){
         mac_address = sockets[conn.id];
+        clients[mac_address] = undefined;
         console.log("disconnection:" + conn.id + "/" + mac_address);
     });
   }).listen(5000);
