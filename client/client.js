@@ -14,7 +14,7 @@ var port = process.argv[2].split(':')[1];
 
 // Get location of plugwise drivers
 var user=process.env.USER
-var plugwise="/home/" + user + "/dnodecontrol/client/zygbee
+var plugwise="/home/" + user + "/dnodecontrol/client/zygbee"
 
 // Helpers
 require('./lib/helpers.js');
