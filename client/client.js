@@ -1,5 +1,6 @@
 var dnode = require('dnode');
 var exec = require('child_process').exec;
+var macaddr = require('./lib/macaddr');
 
 // Make sure server is provided
 if(process.argv.length < 3){
@@ -29,10 +30,14 @@ dnode(function (remote, conn) {
 
     // Get mac address
     this.getMac = function(cb){
-      child = exec('/sbin/ifconfig | grep HW | awk \'{print $5}\'', function (error, stdout, stderr) {
-          mac = stdout.chomp();
-          cb(mac);
-      });
+        macaddr.address(function(err, addr) {
+            if (addr) {
+                console.log('MAC address: ' + addr);
+             } else {
+                console.log('mac not found');
+             }
+             cb(addr);
+        });
     };
 
     // Switch on device
@@ -66,4 +71,4 @@ dnode(function (remote, conn) {
         ); 
     };
 
-}).connect(server, port);
+}).connect(server, port, {'reconnect': 3000});
