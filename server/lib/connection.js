@@ -1,5 +1,5 @@
 function conf() {
-  dnode(function (remote, conn) {
+  upnode(function (remote, conn) {
     conn.on('connect', function (){
         console.log("connection");
     });

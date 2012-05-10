@@ -2,7 +2,7 @@
   "name": "control_server",
   "version": "0.0.1",
   "dependencies": {
-    "dnode": "0.9.x",
+    "upnode": "0.2.x",
     "express": "2.5.4",
     "redis": "0.7.1",
     "hiredis": "0.1.14",

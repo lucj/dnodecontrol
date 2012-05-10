@@ -1,4 +1,4 @@
-var dnode = require('dnode');
+var upnode = require('upnode');
 var exec = require('child_process').exec;
 var macaddr = require('./lib/macaddr');
 
@@ -21,7 +21,7 @@ var plugwise="/home/" + user + "/dnodecontrol/client/zygbee"
 require('./lib/helpers.js');
 
 // Define client functions
-dnode(function (remote, conn) {
+upnode(function (remote, conn) {
 
     // Ping
     this.ping = function (cb) {
@@ -71,4 +71,4 @@ dnode(function (remote, conn) {
         ); 
     };
 
-}).connect(server, port, {'reconnect': 3000});
+}).connect(server, port);

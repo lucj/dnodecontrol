@@ -1,4 +1,4 @@
-dnode = require('dnode');
+upnode = require('upnode');
 util = require('util');
 express = require('express');
 exec = require('child_process').exec;
@@ -22,7 +22,7 @@ helpers = require('./lib/helpers.js');
 middleware = require('./lib/middleware.js');
 
 // Handling of incoming connection
-require('./lib/connection.js').conf(dnode);
+require('./lib/connection.js').conf();
 
 // Routes
 require('./routes/client.js').route(app, middleware, helpers);
