@@ -1,5 +1,5 @@
 {
-  "name": "control_client",
+  "name": "dnode_client",
   "version": "0.0.1",
   "dependencies": {
     "upnode": "0.2.x"
