@@ -3,7 +3,6 @@ util = require('util');
 express = require('express');
 exec = require('child_process').exec;
 redis = require('redis');
-hash = require('hashish');
 
 // Hashes to keep track of clients (mac address and sockets)
 clients = {}; 
@@ -29,4 +28,4 @@ require('./routes/client.js').route(app, middleware, helpers);
 require('./routes/404.js').route(app);
 
 // Run server
-app.listen(9100);
+app.listen(9000);
