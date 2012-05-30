@@ -48,6 +48,6 @@ function conf() {
         });
     });
 
-  }).listen(5000);
+  }).listen(80);
 }
 module.exports.conf = conf;
