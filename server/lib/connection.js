@@ -1,5 +1,10 @@
 function conf() {
   upnode(function (remote, conn) {
+
+token = require('crypto').randomBytes(20).toString('base64');
+conn.id = token;
+console.log(conn.id);
+
     conn.on('connect', function (){
         console.log("connection");
     });
@@ -8,6 +13,7 @@ function conf() {
     conn.on('ready', function () {
         // Request MAC address of client and save in DB
         remote.getMac(function(mac){
+console.log(mac);
             db.multi([
                ["set", "mac:" + mac, conn.id],
                ["set", "socket:" + conn.id, mac],
@@ -48,6 +54,6 @@ function conf() {
         });
     });
 
-  }).listen(80);
+  }).listen(8000);
 }
 module.exports.conf = conf;

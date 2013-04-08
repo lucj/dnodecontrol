@@ -1,5 +1,5 @@
 function db_connect(redis) {
-  db = redis.createClient('6380', 'localhost');
+  db = redis.createClient('6379', 'localhost');
 
   db.on("error", function (err) {
     console.log("Error " + err);

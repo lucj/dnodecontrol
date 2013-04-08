@@ -8,7 +8,8 @@ redis = require('redis');
 clients = {}; 
 
 // App configuration
-var app = express.createServer();
+// var app = express.createServer();
+var app = express();
 require('./config/environments.js').conf(app, express);
 
 // Database configuration
