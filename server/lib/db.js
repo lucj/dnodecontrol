@@ -1,6 +1,14 @@
 function db_connect(redis) {
   db = redis.createClient('6379', 'localhost');
 
+  db.on("ready", function(err){
+    console.log("- ready to handle database client");
+  });
+
+  db.on("connect", function(err){
+    console.log("- connected to the redis database");
+  });
+
   db.on("error", function (err) {
     console.log("Error " + err);
   });

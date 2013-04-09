@@ -29,4 +29,6 @@ require('./routes/client.js').route(app, middleware, helpers);
 require('./routes/404.js').route(app);
 
 // Run server
-app.listen(9000);
+var web_server_port = process.env.WEB_SERVER_PORT || 9000;
+app.listen(web_server_port);
+console.log("- web client can connect on port: " + web_server_port);

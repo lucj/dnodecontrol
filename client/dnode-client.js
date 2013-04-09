@@ -5,7 +5,7 @@ var macaddr = require('./lib/macaddr');
 // Make sure server is provided
 if(process.argv.length < 3){
     console.log("Client must be ran using:");
-    console.log("node client.js http://SERVER:PORT");
+    console.log("node client.js SERVER:PORT");
     process.exit(1);
 }
 
