@@ -5,6 +5,7 @@
    }
 
    now.on('connect', function () {
+console.log("connect");
       // Get ID of the connected client
       var client_id = this.user.clientId; 
 
