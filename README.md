@@ -9,7 +9,7 @@ Server and client run with node.js version 0.8.x
 
 server uses 2 differents ports:
   * WEB_SERVER_PORT: port on which web client can use the API (9000 by default)
-  * CONNECTION_SERVER_PORT: port on which node client should connect (80 by default)
+  * CONNECTION_SERVER_PORT: port on which node client should connect (8000 by default)
   
 - Client installation  
   

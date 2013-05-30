@@ -1,8 +1,8 @@
 function conf() {
 
- // Server port 
- var server_connection_port = process.env.SERVER_CONNECTION_PORT || 80;
- console.log("- client can connect on port: " + server_connection_port);
+  // Server port 
+  var server_connection_port = process.env.SERVER_CONNECTION_PORT || 80;
+  console.log("- client can connect on port: " + server_connection_port);
 
   upnode(function (remote, conn) {
 
