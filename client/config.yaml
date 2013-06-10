@@ -1,4 +1,0 @@
-config:
-  server: SERVER:PORT
-  plugwise: /dev/ttyUSB0
-  devices: ABCD12,ABCD13

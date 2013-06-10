@@ -1,17 +1,14 @@
-var upnode = require('upnode');
-var exec = require('child_process').exec;
+var upnode  = require('upnode');
+var nconf   = require('nconf');
+var exec    = require('child_process').exec;
 var macaddr = require('./lib/macaddr');
 
-// Make sure server is provided
-if(process.argv.length < 3){
-    console.log("Client must be ran using:");
-    console.log("node client.js SERVER:PORT");
-    process.exit(1);
-}
+// Reads configuration file
+nconf.file('./config.json');
 
 // Get server/port
-var server = process.argv[2].split(':')[0];
-var port = process.argv[2].split(':')[1];
+var server = nconf.get('server:host');
+var port = nconf.get('server:port');
 
 // Get location of plugwise drivers
 var user=process.env.USER
@@ -27,15 +24,19 @@ upnode(function (remote, conn) {
         cb("pong");
     };
 
-    // Get mac address
-    this.getMac = function(cb){
+    // Get mac address and devices attached
+    this.getMacAndDevices = function(cb){
         macaddr.address(function(err, addr) {
             if (addr) {
                 console.log('MAC address: ' + addr);
              } else {
                 console.log('mac not found');
              }
-             cb(addr);
+
+             // Read devices from configuration file
+             // devices = ['123', '456'];
+             var devices = nconf.get('devices').split(',');
+             cb(addr, devices);
         });
     };
 
@@ -45,7 +46,7 @@ upnode(function (remote, conn) {
         if(action == "off"){cmd = "f";}
 
         // Call plugwise driver
-        child = exec('python ' + plugwise + '/pol.py -p /dev/ttyUSB0 -' + cmd + ' 000D6F0000' + id,
+        child = exec('python ' + plugwise + '/pol.py -p ' + nconf.get('plugwise') + ' -' + cmd + ' 000D6F0000' + id,
            function (error, stdout, stderr) {
              if(!error){
                cb({"status": action});
@@ -59,7 +60,7 @@ upnode(function (remote, conn) {
     // Get device consumption
     this.consumption = function(id, cb){
         // Call Plugwise driver
-        child = exec('python ' + plugwise + '/pol.py -p /dev/ttyUSB0 -w 000D6F0000' + id,
+        child = exec('python ' + plugwise + '/pol.py -p ' + nconf.get('plugwise') + ' -w 000D6F0000' + id,
            function (error, stdout, stderr) {
              if(!error){
                cb({"consumption": stdout.chomp()});
