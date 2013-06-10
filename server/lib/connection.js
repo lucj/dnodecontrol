@@ -16,23 +16,26 @@ function conf() {
 
     // Connection starts
     conn.on('ready', function () {
-        // Request MAC address of client and save in DB
-        remote.getMac(function(mac){
-            console.log(mac);
+
+        // Request MAC address and devices of client and save in DB
+        remote.getMacAndDevices(function(mac, devices){
             db.multi([
                ["set", "mac:" + mac, conn.id],
                ["set", "socket:" + conn.id, mac],
                ["sadd", "clients", mac],
                ["sadd", "connected", mac],
+               ["sadd", "mac:" + mac + ":devices", devices]
             ]).exec(function (err, replies) {
                if(err){
                   console.log("error:" + err.message);
                } else {
-                  console.log("connection:" + conn.id + "/" + mac);
+                  console.log('[' + conn.id + ']/[' + mac + ']/[' + devices + ']');
                }
             });
             clients[mac] = remote;
         });
+
+        // TOOD register client device !!!!
     });
 
     // Connection ends
@@ -47,6 +50,7 @@ function conf() {
                  ["del", "socket:" + conn.id],
                  ["srem", "clients", mac],
                  ["srem", "connected", mac],
+                 ["del", "mac:" + mac + ":devices"]
               ]).exec(function(err, replies){
                  if(err){
                     console.log("error:" + er.message);
