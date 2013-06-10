@@ -2,7 +2,8 @@
   "name": "dnode_client",
   "version": "0.0.1",
   "dependencies": {
-    "upnode": "0.4.x"
+    "upnode": "0.4.x",
+    "nconf": "0.6.7"
   },
   "engine": {
     "node": "0.8.x"
