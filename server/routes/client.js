@@ -65,7 +65,8 @@ function route(app, md, h){
   }); 
 
   // Switch on/off a device
-  app.put('/clients/:mac/devices/:id', md.checkOnOffAction, md.checkConnection, md.checkDeviceOwnership, function(req, res){
+  // app.put('/clients/:mac/devices/:id', md.checkOnOffAction, md.checkConnection, md.checkDeviceOwnership, function(req, res){
+  app.get('/clients/:mac/devices/:id/:action', md.checkConnection, md.checkDeviceOwnership, function(req, res){
     // Get client
     var client = clients[req.params.mac];
 
@@ -73,7 +74,8 @@ function route(app, md, h){
     var id = req.params.id;
 
     // Get action
-    var action = req.query["action"];
+    // var action = req.query["action"];
+    var action = req.params.action;
 
     // Call action on client
     client.switchOnOff(id, action, function(msg){
