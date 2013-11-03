@@ -1,0 +1,8 @@
+{
+  "server": {
+    "host": SERVER,
+    "port": PORT 
+  },
+  "plugwise": "/dev/ttyUSB0",
+  "devices": "DEVICE1,DEVICE2"
+}
